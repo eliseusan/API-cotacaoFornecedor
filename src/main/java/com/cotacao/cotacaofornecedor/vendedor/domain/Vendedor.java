@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import com.cotacao.cotacaofornecedor.vendedor.application.api.VendedorRequest;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 public class Vendedor {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(columnDefinition = "uuid", name = "idVendedor", updatable = false, unique = true, nullable = false)
@@ -35,4 +39,17 @@ public class Vendedor {
 	private String cpf ;
 	private LocalDateTime dataHoraDoCadastro ;
 	private LocalDateTime dataHoraDaUltimaAlteracao ;
+	
+	public Vendedor(@Valid VendedorRequest vendedorRequest) {
+		this.nomeVendedor = vendedorRequest.getNomeVendedor();
+		this.email = vendedorRequest.getEmail();
+		this.telefone = vendedorRequest.getTelefone();
+		this.cpf = vendedorRequest.getCpf();
+		this.dataHoraDoCadastro =LocalDateTime.now();
+	}
+
+	
+	
+	
+	
 }
