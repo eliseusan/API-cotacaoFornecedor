@@ -10,7 +10,7 @@ public class VendedorRequest {
 	@Column(unique = true)
 	private String nomeVendedor;
 	@NotBlank
-	@Email
+	@Email(message = "Email is not valid")
 	@Column(unique = true)
 	private String email;
 	@NotBlank

@@ -23,13 +23,9 @@ public class VendedorApplicationService implements VendedorService {
 	public VendedorResponse criaVendedor(@Valid VendedorRequest vendedorRequest) {
 		log.info("[start] VendedorApplicationService - criaVendedor");
 		Vendedor vendedor= vendedorRepository.salva(new Vendedor(vendedorRequest));
-		log.info("[finaliza] ClienteApplicationService - criaCliente");
-		
-		return VendedorResponse.builder()
-				.idCliente(cliente.getIdCliente())
-				.build();
-		log.info("[finish] VendedorApplicationService - criaVendedor");
-		return null;
+		log.info("[finish] VendedorApplicationService - criaVendedor");		
+		return VendedorResponse.builder()			
+				.idVendedor(vendedor.getIdVendedor())
+				.build();			
 	}
-
 }
